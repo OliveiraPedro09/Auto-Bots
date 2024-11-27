@@ -15,22 +15,22 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "OliveiraPedro09"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;OliveiraPedro09&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/OliveiraPedro09/Auto-Bots.git",
-    "accountId": "8800283c-bd45-410c-867d-c6ef7ae10dfc"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/OliveiraPedro09/Auto-Bots.git&quot;,
+    &quot;accountId&quot;: &quot;8800283c-bd45-410c-867d-c6ef7ae10dfc&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 6
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="2pOWnFIjhWdnyKC2WDpAJPtRsxt" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -41,6 +41,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "atv-1",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/pedromartinsdeoliveira/Documents/aulas/Tecnicas-de-Programacao/autobots/Auto-Bots",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
@@ -77,6 +78,7 @@
       <option name="presentableId" value="Default" />
       <updated>1732637769490</updated>
       <workItem from="1732637773490" duration="154000" />
+      <workItem from="1732637967143" duration="134000" />
     </task>
     <servers />
   </component>
