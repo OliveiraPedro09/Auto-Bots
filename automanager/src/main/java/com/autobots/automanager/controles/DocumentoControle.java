@@ -38,14 +38,14 @@ public class DocumentoControle {
             repositorio.save(cliente);
         }
 
-    @PostMapping("/vizualizar/{id}")
+    @GetMapping("/vizualizar/{id}")
         public List<Documento> vizualizarDocumento(@PathVariable long id){
             List<Cliente> clientes = repositorio.findAll();
             Cliente cliente = selecionador.selecionar(clientes, id);
             return cliente.getDocumentos();
         }
 
-    @PostMapping("/atualizar/{id}")
+    @PutMapping("/atualizar/{id}")
         public void atualizarDocumento(@RequestBody List<Documento> documento, @PathVariable long id){
             List<Cliente> clientes = repositorio.findAll();
             Cliente cliente = selecionador.selecionar(clientes, id);
@@ -53,7 +53,7 @@ public class DocumentoControle {
             repositorio.save(cliente);
         }
 
-    @PostMapping("/excluir/{id}")
+    @DeleteMapping("/excluir/{id}")
     public void excluirDocumento(@RequestBody List<Documento> documento, @PathVariable long id){
         List<Cliente> clientes = repositorio.findAll();
         Cliente cliente = selecionador.selecionar(clientes, id);

@@ -22,8 +22,16 @@ public class EnderecoControle {
     @Autowired
     private EnderecoAtualizador atualizador;
 
-    @GetMapping("/atualizar/{id}")
+    @PutMapping("/atualizar/{id}")
     public void atualizarEndereco(@RequestBody Endereco endereco,@PathVariable Long id) {
+        List<Cliente> clientes = clienteRepositorio.findAll();
+        Cliente cliente = clienteSelecionador.selecionar(clientes, id);
+        atualizador.atualizar(cliente.getEndereco(), endereco);
+        clienteRepositorio.save(cliente);
+    }
+
+    @GetMapping("/visualizar/{id}")
+    public void atualizarEndereca(@RequestBody Endereco endereco,@PathVariable Long id) {
         List<Cliente> clientes = clienteRepositorio.findAll();
         Cliente cliente = clienteSelecionador.selecionar(clientes, id);
         atualizador.atualizar(cliente.getEndereco(), endereco);
