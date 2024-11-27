@@ -1,10 +1,16 @@
 package com.autobots.automanager.controles;
 
+import com.autobots.automanager.entidades.Cliente;
+import com.autobots.automanager.entidades.Documento;
+import com.autobots.automanager.modelo.ClienteSelecionador;
+import com.autobots.automanager.modelo.DocumentoAtualizador;
+import com.autobots.automanager.modelo.DocumentoCadastrador;
+import com.autobots.automanager.modelo.DocumentoRemovedor;
 import com.autobots.automanager.repositorios.ClienteRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/documento")
@@ -12,17 +18,46 @@ public class DocumentoControle {
     @Autowired
     private ClienteRepositorio repositorio;
 
-    @PostMapping("/cadastro")
-    public void cadastroDocumento() {
-    }
+    @Autowired
+    private ClienteSelecionador selecionador;
 
-    @PostMapping("/atualizar")
-    public void atualizarDocumento(){
+    @Autowired
+    private DocumentoCadastrador cadastrador;
 
-    }
+    @Autowired
+    private DocumentoRemovedor removedor;
 
-    @PostMapping("/excluir")
-    public void excluirDocumento(){
+    @Autowired
+    private DocumentoAtualizador atualizador;
 
+    @PostMapping("/cadastro{id}")
+        public void cadastrarDocumento(@RequestBody List<Documento> documento, @PathVariable long id) {
+            List<Cliente> clientes = repositorio.findAll();
+            Cliente cliente = selecionador.selecionar(clientes, id);
+            cadastrador.cadastro(cliente, documento);
+            repositorio.save(cliente);
+        }
+
+    @PostMapping("/vizualizar/{id}")
+        public List<Documento> vizualizarDocumento(@PathVariable long id){
+            List<Cliente> clientes = repositorio.findAll();
+            Cliente cliente = selecionador.selecionar(clientes, id);
+            return cliente.getDocumentos();
+        }
+
+    @PostMapping("/atualizar/{id}")
+        public void atualizarDocumento(@RequestBody List<Documento> documento, @PathVariable long id){
+            List<Cliente> clientes = repositorio.findAll();
+            Cliente cliente = selecionador.selecionar(clientes, id);
+            atualizador.atualizar(cliente.getDocumentos(), documento);
+            repositorio.save(cliente);
+        }
+
+    @PostMapping("/excluir/{id}")
+    public void excluirDocumento(@RequestBody List<Documento> documento, @PathVariable long id){
+        List<Cliente> clientes = repositorio.findAll();
+        Cliente cliente = selecionador.selecionar(clientes, id);
+        removedor.remover(cliente, documento);
+        repositorio.save(cliente);
     }
 }
