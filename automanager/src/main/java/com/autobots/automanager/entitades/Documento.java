@@ -24,4 +24,7 @@ public class Documento {
 	private Date dataEmissao;
 	@Column(unique = true, nullable = false)
 	private String numero;
+
+	public Documento() {
+	}
 }

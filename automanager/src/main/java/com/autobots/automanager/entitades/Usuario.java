@@ -18,11 +18,12 @@ import com.autobots.automanager.enumeracoes.PerfilUsuario;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.springframework.hateoas.RepresentationModel;
 
 @Data
 @EqualsAndHashCode(exclude = { "mercadorias", "vendas", "veiculos" })
 @Entity
-public class Usuario {
+public class Usuario extends RepresentationModel<Usuario> {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;

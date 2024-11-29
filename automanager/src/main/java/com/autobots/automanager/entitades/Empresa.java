@@ -15,10 +15,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import lombok.Data;
+import org.springframework.hateoas.RepresentationModel;
 
 @Data
 @Entity
-public class Empresa {
+public class Empresa extends RepresentationModel<Empresa> {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;

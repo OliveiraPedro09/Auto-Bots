@@ -11,11 +11,13 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
 import lombok.Data;
+import org.springframework.hateoas.Link;
+import org.springframework.hateoas.RepresentationModel;
 
 @Data
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Credencial {
+public abstract class Credencial extends RepresentationModel<Credencial> {
 	@Id()
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -25,4 +27,7 @@ public abstract class Credencial {
 	private Date ultimoAcesso;
 	@Column(nullable = false)
 	private boolean inativo;
+
+	public Credencial() {
+	}
 }

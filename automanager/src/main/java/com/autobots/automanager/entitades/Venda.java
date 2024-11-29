@@ -17,11 +17,12 @@ import javax.persistence.OneToOne;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.springframework.hateoas.RepresentationModel;
 
 @Data
 @EqualsAndHashCode(exclude = { "cliente", "funcionario", "veiculo" })
 @Entity
-public class Venda {
+public class Venda extends RepresentationModel<Venda> {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
