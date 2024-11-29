@@ -1,5 +1,6 @@
 package com.autobots.automanager.entitades;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -14,20 +15,20 @@ import lombok.Data;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.RepresentationModel;
 
+@SuppressWarnings("serial")
 @Data
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Credencial extends RepresentationModel<Credencial> {
-	@Id()
+public class Credencial extends RepresentationModel<Credencial> implements Serializable  {
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@Column(nullable = false)
-	private Date criacao;
-	@Column()
-	private Date ultimoAcesso;
-	@Column(nullable = false)
-	private boolean inativo;
 
-	public Credencial() {
-	}
+	@Column(nullable = false, unique = true)
+	private String nomeUsuario;
+
+	@Column(nullable = false)
+	private String senha;
+
+	@Column(nullable = false)
+	private Boolean inativo = false;
 }
