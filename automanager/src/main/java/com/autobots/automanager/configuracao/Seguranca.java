@@ -3,6 +3,7 @@ package com.autobots.automanager.configuracao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -30,7 +31,7 @@ public class Seguranca extends WebSecurityConfigurerAdapter {
     @Autowired
     private ProvedorJwt provedorJwt;
 
-    private static final String[] rotasPublicas = { "/", "/cadastrar-usuario", "/obter-usuarios" };
+    private static final String[] rotasPublicas = { "/", "/auth/registrar", "/auth/login", "/usuario/listar" };
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -47,6 +48,17 @@ public class Seguranca extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder autenticador) throws Exception {
         autenticador.userDetailsService(servico).passwordEncoder(new BCryptPasswordEncoder());
+    }
+
+    @Bean
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
+
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
     @Bean

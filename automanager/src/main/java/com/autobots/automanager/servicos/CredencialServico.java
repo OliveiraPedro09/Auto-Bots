@@ -2,19 +2,16 @@ package com.autobots.automanager.servicos;
 
 import com.autobots.automanager.DTO.CredencialDto;
 import com.autobots.automanager.entitades.Credencial;
-import com.autobots.automanager.entitades.CredencialCodigoBarra;
-import com.autobots.automanager.entitades.CredencialUsuarioSenha;
 import com.autobots.automanager.entitades.Usuario;
 import com.autobots.automanager.modelos.adicionadores.AdicionadorLinkCredencial;
+import com.autobots.automanager.modelos.outros.SelecionadorUsuario;
+import com.autobots.automanager.modelos.outros.VerificadorPermissao;
 import com.autobots.automanager.repositorios.RepositorioCredencial;
 import com.autobots.automanager.repositorios.RepositorioUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Set;
+
 
 @Service
 public class CredencialServico {
@@ -27,6 +24,12 @@ public class CredencialServico {
 
     @Autowired
     private AdicionadorLinkCredencial adicionadorLinkCredencial;
+
+    @Autowired
+    private SelecionadorUsuario selecionadorUsuario;
+
+    @Autowired
+    private VerificadorPermissao verificadorPermissao;
 
     public List<Credencial> listarCredenciais() {
         List<Credencial> credencials = repositorioCredencial.findActiveCredentials();
@@ -42,79 +45,82 @@ public class CredencialServico {
         return credencial;
     }
 
-    public List<Credencial> listarCredenciaisUsuario(Long idUsuario) {
+    public Credencial listarCredenciaisUsuario(Long idUsuario, String username) {
+        List<Usuario> usuarios = repositorioUsuario.findAll();
         Usuario usuario = repositorioUsuario.findById(idUsuario).orElse(null);
+        Usuario usuarioSelecionado = selecionadorUsuario.selecionarUsername(usuarios, username);
+
         if (usuario == null) {
             throw new IllegalArgumentException("Usuário não encontrado.");
         }
-        Set<Credencial> credenciais = usuario.getCredenciais();
-        List<Credencial> credenciaisLista = new ArrayList<>(credenciais);
-        adicionadorLinkCredencial.adicionarLink(credenciaisLista);
-        return credenciaisLista;
+
+        boolean permissao = verificadorPermissao.verificar(usuarioSelecionado.getPerfis(), usuario.getPerfis());
+
+        if (!permissao) {
+            throw new IllegalArgumentException("Usuário sem permissão.");
+        }
+
+        Credencial credencial = usuario.getCredencial();
+        adicionadorLinkCredencial.adicionarLink(credencial);
+        return credencial;
     }
 
-    public void cadastrarCredencialUsuarioSenha(Long idUsuario, CredencialDto credencial) {
-
+    public void cadastrarCredencial (Long idUsuario, CredencialDto credencial, String username) {
+        List<Usuario> usuarios = repositorioUsuario.findAll();
+        Usuario usuarioSelecionado = selecionadorUsuario.selecionarUsername(usuarios, username);
         Usuario usuario = repositorioUsuario.findById(idUsuario).orElse(null);
         if (usuario == null) {
             throw new IllegalArgumentException("Usuário não encontrado.");
         }
 
-        CredencialUsuarioSenha credencialUsuarioSenha = new CredencialUsuarioSenha();
+        boolean permissao = verificadorPermissao.verificar(usuarioSelecionado.getPerfis(), usuario.getPerfis());
+
+        if (!permissao) {
+            throw new IllegalArgumentException("Usuário sem permissão.");
+        }
+
+        Credencial credencialCadastrar = new Credencial();
         if (credencial.nomeUsuario().isPresent()) {
-            credencialUsuarioSenha.setNomeUsuario(credencial.nomeUsuario().get());
+            credencialCadastrar.setNomeUsuario(credencial.nomeUsuario().get());
         }
         if (credencial.senha().isPresent()) {
-            credencialUsuarioSenha.setSenha(credencial.senha().get());
+            credencialCadastrar.setSenha(credencial.senha().get());
         }
-        credencialUsuarioSenha.setInativo(false);
-        credencialUsuarioSenha.setCriacao(new Date());
-        credencialUsuarioSenha.setUltimoAcesso(new Date());
-        repositorioCredencial.save(credencialUsuarioSenha);
+        credencialCadastrar.setInativo(false);
+        repositorioCredencial.save(credencialCadastrar);
 
-        usuario.getCredenciais().add(credencialUsuarioSenha);
+        usuario.setCredencial(credencialCadastrar);
         repositorioUsuario.save(usuario);
     }
 
-    public void cadastrarCredencialCodigoBarra(Long idUsuario, CredencialDto credencial) {
-
-        Usuario usuario = repositorioUsuario.findById(idUsuario).orElse(null);
-        if (usuario == null) {
+    public void atualizarCredencial(Long id, CredencialDto credencial, String username) {
+        Credencial credencialAtualizado = repositorioCredencial.findActiveCredentialById(id).orElse(null);
+        List<Usuario> usuarios = repositorioUsuario.findAll();
+        Usuario usuarioSelecionado = selecionadorUsuario.selecionarUsername(usuarios, username);
+        Usuario usuarioAtualizado = null;
+        for (Usuario usuario : usuarios) {
+            if (usuario.getCredencial().getId().equals(id)) {
+                usuarioAtualizado = usuario;
+                break;
+            }
+        }
+        if (usuarioAtualizado == null) {
             throw new IllegalArgumentException("Usuário não encontrado.");
         }
 
-        CredencialCodigoBarra credencialCodigoBarra = new CredencialCodigoBarra();
-        if (credencial.codigo().isPresent()) {
-            credencialCodigoBarra.setCodigo(credencial.codigo().get());
+        boolean permissao = verificadorPermissao.verificar(usuarioSelecionado.getPerfis(), usuarioAtualizado.getPerfis());
+
+        if (!permissao) {
+            throw new IllegalArgumentException("Usuário sem permissão.");
         }
-        credencialCodigoBarra.setInativo(false);
-        credencialCodigoBarra.setCriacao(new Date());
-        credencialCodigoBarra.setUltimoAcesso(new Date());
-        repositorioCredencial.save(credencialCodigoBarra);
-
-        usuario.getCredenciais().add(credencialCodigoBarra);
-        repositorioUsuario.save(usuario);
-    }
-
-    public void atualizarCredencial(Long id, CredencialDto credencial) {
-        Credencial credencialAtualizado = repositorioCredencial.findActiveCredentialById(id).orElse(null);
 
         if (credencialAtualizado != null) {
-            if (credencialAtualizado instanceof CredencialUsuarioSenha) {
-                if (credencial.nomeUsuario().isPresent()) {
-                    ((CredencialUsuarioSenha) credencialAtualizado).setNomeUsuario(credencial.nomeUsuario().get());
-                }
-                if (credencial.senha().isPresent()) {
-                    ((CredencialUsuarioSenha) credencialAtualizado).setSenha(credencial.senha().get());
-                }
+            if (credencial.nomeUsuario().isPresent()) {
+                credencialAtualizado.setNomeUsuario(credencial.nomeUsuario().get());
             }
-            else if (credencialAtualizado instanceof CredencialCodigoBarra) {
-                if (credencial.codigo().isPresent()) {
-                    ((CredencialCodigoBarra) credencialAtualizado).setCodigo(credencial.codigo().get());
-                }
+            if (credencial.senha().isPresent()) {
+                credencialAtualizado.setSenha(credencial.senha().get());
             }
-            credencialAtualizado.setUltimoAcesso(new Date());
-
             repositorioCredencial.save(credencialAtualizado);
         }
 

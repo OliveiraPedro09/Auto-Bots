@@ -5,9 +5,40 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f23ac4dd-d508-4c5c-9194-50b777e4fbf7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/autobots/automanager/controles/Login.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/autobots/automanager/modelos/outros/SelecionadorUsuario.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/autobots/automanager/modelos/outros/VerificadorPermissao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/autobots/automanager/servicos/AutenticacaoService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/autobots/automanager/servicos/UsuarioService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/autobots/automanager/AutomanagerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/autobots/automanager/AutomanagerApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/autobots/automanager/DTO/AtualizarUsuarioDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/autobots/automanager/DTO/AtualizarUsuarioDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/autobots/automanager/DTO/UsuarioDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/autobots/automanager/DTO/UsuarioDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/autobots/automanager/configuracao/Seguranca.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/autobots/automanager/configuracao/Seguranca.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/autobots/automanager/controles/CredencialControle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/autobots/automanager/controles/CredencialControle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/autobots/automanager/controles/UsuarioControle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/autobots/automanager/controles/UsuarioControle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/autobots/automanager/entitades/CredencialCodigoBarra.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/autobots/automanager/entitades/CredencialCodigoBarra.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/autobots/automanager/entitades/CredencialUsuarioSenha.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/autobots/automanager/entitades/CredencialUsuarioSenha.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/autobots/automanager/entitades/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/autobots/automanager/entitades/Usuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/autobots/automanager/enumeracoes/PerfilUsuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/autobots/automanager/enumeracoes/PerfilUsuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/autobots/automanager/modelos/cadastrador/CadastradorUsuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/autobots/automanager/modelos/cadastrador/CadastradorUsuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/autobots/automanager/servicos/CredencialServico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/autobots/automanager/servicos/CredencialServico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/autobots/automanager/servicos/UsuarioServico.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/autobots/automanager/AutomanagerApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/autobots/automanager/AutomanagerApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/autobots/automanager/DTO/AtualizarUsuarioDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/autobots/automanager/DTO/AtualizarUsuarioDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/autobots/automanager/DTO/UsuarioDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/autobots/automanager/DTO/UsuarioDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/autobots/automanager/controles/CredencialControle.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/autobots/automanager/controles/CredencialControle.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/autobots/automanager/controles/UsuarioControle.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/autobots/automanager/controles/UsuarioControle.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/autobots/automanager/entitades/Credencial.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/autobots/automanager/entitades/Credencial.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/autobots/automanager/entitades/CredencialUsuarioSenha.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/autobots/automanager/entitades/CredencialUsuarioSenha.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/autobots/automanager/entitades/Usuario.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/autobots/automanager/entitades/Usuario.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/autobots/automanager/enumeracoes/PerfilUsuario.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/autobots/automanager/enumeracoes/PerfilUsuario.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/autobots/automanager/modelos/cadastrador/CadastradorUsuario.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/autobots/automanager/modelos/cadastrador/CadastradorUsuario.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/autobots/automanager/servicos/CredencialServico.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/autobots/automanager/servicos/CredencialServico.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/autobots/automanager/servicos/UsuarioServico.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +89,10 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "Spring Boot.AutomanagerApplication.executor": "Run",
     "git-widget-placeholder": "atv-4",
@@ -71,7 +106,7 @@
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "MavenSettings",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
